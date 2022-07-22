@@ -1,0 +1,13 @@
+Timer
+
+- funzione timer 20 secondi seguita da timer 10 secondi ripetuta 9 volte
+
+timer alternati da 20 e 10 secondi che si ripetono per 9 volte (o 3 ripetizioni a volta a seconda della scelta)
+
+
+APP BETA:
+
+fun{
+	- SCHERMO ROSSO CON TIMER 20 SECONDI E SCRITTA WORK
+	- SCHERMO VERDE CON TIMER 10 SECONDI E SCRITTA REST				X3 VOLTE
+	}			
