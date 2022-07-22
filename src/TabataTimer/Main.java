@@ -2,29 +2,59 @@ package TabataTimer;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
 	public static void main(String[] args) {
-		timer();
+		restTimer();
 
 	}
 	
 
-	public static  void timer() {
-		int time1 = 20000; 
-		int time2 = 10000;
+	public static void workTimer() { 
+		System.out.println("Work Time");
 		
-		Timer timer = new Timer();
+		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 		
-		TimerTask task = new TimerTask() {
-			@Override
+		final Runnable runnable = new Runnable() {
+			int countdown = 20;
+
 			public void run() {
-				System.out.print("Work Time");
+				System.out.println(countdown);
+				countdown--;
+				
+				if (countdown < 0) {
+                    System.out.println("Timer Over!");
+                    scheduler.shutdown();
+                }
 			}
 		};
 		
+		scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
+	}
+	
+	public static void restTimer() {
+		System.out.println("Rest Time");
 		
-		timer.schedule(task, time1); // runs the task After the delay
+		final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		
+		final Runnable runnable = new Runnable() {
+			int countdown = 10;
+
+			public void run() {
+				System.out.println(countdown);
+				countdown--;
+				
+				if (countdown < 0) {
+                    System.out.println("Timer Over!");
+                    scheduler.shutdown();
+                }
+			}
+		};
+		
+		scheduler.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
 	}
 }
